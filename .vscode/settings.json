@@ -1,0 +1,30 @@
+{
+    "deploy.reloaded": {
+        "packages": [
+            {
+                "name": "Version 1.0.0",
+                "description": "Package version 1.0.0",
+
+                "files": [
+                    "publish/**"
+                ]
+            }
+        ],
+
+        "targets": [
+            {
+                "type": "sftp",
+                "name": "Linux",
+                "description": "SFTP folder",
+
+                "host": "172.104.56.183", "port": 22,
+                "user": "root", "password": "piggy@linode2020",
+
+                "dir": "/var/piggy",
+                "mappings": {
+                    "publish/**": "/"
+                }
+            }
+        ]
+    }
+}
