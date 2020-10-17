@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
-import {BreadcrumbModule} from 'xng-breadcrumb';
 import { TestErrorComponent } from './test-error/test-error.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ServerErrorComponent } from './server-error/server-error.component';
@@ -27,7 +26,6 @@ import { SharedModule } from '../shared/shared.module';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
     }),
-    BreadcrumbModule,
     SharedModule
   ],
   exports: [
