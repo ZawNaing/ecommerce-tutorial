@@ -46,6 +46,16 @@ namespace API.Controllers
             productParams.PageSize, totalItems, data));
         }
 
+        // [HttpGet]
+        // public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetAllProducts()
+        // {
+        //     var products = await _productsRepo.ListAllAsync();
+        //     var data = _mapper
+        //     .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+
+        //     return Ok(data);
+        // }
+
         [Cached(600)]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

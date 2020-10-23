@@ -26,10 +26,10 @@ namespace API
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.AddDbContext<StoreContext>(x =>
-            x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+            x.UseMySql(_config.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<AppIdentityDbContext>(x => {
-                x.UseSqlite(_config.GetConnectionString("IdentityConnection"));
+                x.UseMySql(_config.GetConnectionString("IdentityConnection"));
             });
 
             ConfigureServices(services);
