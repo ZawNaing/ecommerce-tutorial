@@ -1,26 +1,52 @@
 [
   {
-    "Id": 1,
-    "Name": "Angular"
+    "Id": "d80710f6-60a4-46ab-a950-e7805b203734",
+    "Name": "Gucci",
+    "Description": "This is about Gucci",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
-    "Id": 2,
-    "Name": "NetCore"
+    "Id": "fc669e17-8e65-46e3-b2fe-e5735e3c71c9",
+    "Name": "LV",
+    "Description": "This is about LV",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
-    "Id": 3,
-    "Name": "VS Code"
+    "Id": "57c79f76-241b-46bf-bd78-f6b4fb9d4f3b",
+    "Name": "Hermes (air mies)",
+    "Description": "This is about Hermes (air mies)",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
-    "Id": 4,
-    "Name": "React"
+    "Id": "cd3727f4-841d-4c7d-9492-277030c22789",
+    "Name": "Prada",
+    "Description": "This is about Prada",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
-    "Id": 5,
-    "Name": "Typescript"
-  },
-  {
-    "Id": 6,
-    "Name": "Redis"
+    "Id": "9e22cdbd-5e3d-44c9-b4e8-5ae8105ca94e",
+    "Name": "Burberry",
+    "Description": "This is about Burberry",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   }
 ]

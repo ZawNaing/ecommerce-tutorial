@@ -1,18 +1,52 @@
 [
   {
-    "Id": 1,
-    "Name": "Boards"
+    "Id": "13bf7c77-864b-4cff-a927-8119651043eb",
+    "Name": "Bags",
+    "Description": "This is about Bags",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
-    "Id": 2,
-    "Name": "Hats"
+    "Id": "1363fd23-0503-4aa6-b735-ff0012f39edf",
+    "Name": "Watch",
+    "Description": "This is about Watch",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
-    "Id": 3,
-    "Name": "Boots"
+    "Id": "80815942-cb55-418c-855e-91ecb5e05d87",
+    "Name": "Belt",
+    "Description": "This is about Belt",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
-    "Id": 4,
-    "Name": "Gloves"
+    "Id": "5ce93c56-ce01-4af1-9a7b-98fcdfa2be3f",
+    "Name": "Shoes",
+    "Description": "This is about Shoes",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "d1a14210-4a0a-4b52-9cda-be56eaad53a3",
+    "Name": "T-Shirts",
+    "Description": "This is about T-Shirts",
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   }
 ]

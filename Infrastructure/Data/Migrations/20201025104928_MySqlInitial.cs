@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Data.Migrations
@@ -12,8 +11,7 @@ namespace Infrastructure.Data.Migrations
                 name: "DeliveryMethods",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
@@ -33,8 +31,7 @@ namespace Infrastructure.Data.Migrations
                 name: "ProductBrands",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
@@ -52,8 +49,7 @@ namespace Infrastructure.Data.Migrations
                 name: "ProductTypes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
@@ -71,8 +67,7 @@ namespace Infrastructure.Data.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
@@ -86,7 +81,7 @@ namespace Infrastructure.Data.Migrations
                     ShipToAddress_City = table.Column<string>(nullable: true),
                     ShipToAddress_State = table.Column<string>(nullable: true),
                     ShipToAddress_Zipcode = table.Column<string>(nullable: true),
-                    DeliveryMethodId = table.Column<int>(nullable: true),
+                    DeliveryMethodId = table.Column<Guid>(nullable: true),
                     Subtotal = table.Column<decimal>(nullable: false),
                     Status = table.Column<string>(nullable: false),
                     PaymentIntentId = table.Column<string>(nullable: true)
@@ -106,8 +101,7 @@ namespace Infrastructure.Data.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
@@ -115,10 +109,12 @@ namespace Infrastructure.Data.Migrations
                     IsActive = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(nullable: false),
+                    ProductCode = table.Column<string>(nullable: true),
+                    ProductColor = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     PictureUrl = table.Column<string>(nullable: false),
-                    ProductTypeId = table.Column<int>(nullable: false),
-                    ProductBrandId = table.Column<int>(nullable: false)
+                    ProductTypeId = table.Column<Guid>(nullable: false),
+                    ProductBrandId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,19 +137,18 @@ namespace Infrastructure.Data.Migrations
                 name: "OrderItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
-                    ItemOrdered_ProductItemId = table.Column<int>(nullable: true),
+                    ItemOrdered_ProductItemId = table.Column<Guid>(nullable: true),
                     ItemOrdered_ProductName = table.Column<string>(nullable: true),
                     ItemOrdered_PictureUrl = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    OrderId = table.Column<int>(nullable: true)
+                    OrderId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {

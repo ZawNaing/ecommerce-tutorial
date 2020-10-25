@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
@@ -14,22 +16,12 @@ namespace Infrastructure.Data
             _context = context;
         }
 
-        public async Task<ProductBrand> GetProductBrandByIdAsync(int id)
+        public Product GetProductByIdAsync(Guid id)
         {
-            return await _context.ProductBrands.FirstOrDefaultAsync(b => b.Id == id);
-        }
-
-        public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
-        {
-            return await _context.ProductBrands.ToListAsync();
-        }
-
-        public async Task<Product> GetProductByIdAsync(int id)
-        {
-            return await _context.Products
+            return _context.Products
                      .Include(p => p.ProductType)
            .Include(p => p.ProductBrand)
-            .FirstOrDefaultAsync(p => p.Id == id);
+            .FirstOrDefault(p => p.Id == id);
         }
 
         public async Task<IReadOnlyList<Product>> GetProductsAsync()
@@ -40,14 +32,33 @@ namespace Infrastructure.Data
            .ToListAsync();
         }
 
-        public async Task<ProductType> GetProductTypeByIdAsync(int id)
+        public void CreateProductAsync(Product product)
         {
-            return await _context.ProductTypes.FirstOrDefaultAsync(t => t.Id == id);
+            if(product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+            _context.Products.Add(product);
         }
 
-        public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()
+        public void UpdateProductAsync(Product product)
         {
-            return await _context.ProductTypes.ToListAsync();
+            if(product == null) 
+            {
+              throw new ArgumentNullException(nameof(product));  
+            }
+        }
+        public void DeleteProductAsync(Product product)
+        {
+            if(product == null) 
+            {
+              throw new ArgumentNullException(nameof(product));  
+            }
+             _context.Products.Remove(product);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

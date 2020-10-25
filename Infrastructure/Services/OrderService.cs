@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Infrastructure.Services
         }
 
 
-        public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, Address shippingAddress)
+        public async Task<Order> CreateOrderAsync(string buyerEmail, Guid deliveryMethodId, string basketId, Address shippingAddress)
         {
             // get basket from the basket repo
             var basket = await _basketRepo.GetBasketAsync(basketId);
@@ -65,7 +66,7 @@ namespace Infrastructure.Services
             return await _unitOfWork.Repository<DeliveryMethod>().ListAllAsync();
         }
 
-        public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
+        public async Task<Order> GetOrderByIdAsync(Guid id, string buyerEmail)
         {
             var spec = new OrdersWithItemsAndOrderingSpecification(id, buyerEmail);
             return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);

@@ -10,6 +10,7 @@ using System.Security.Claims;
 using API.Extensions;
 using API.Errors;
 using System.Collections.Generic;
+using System;
 
 namespace API.Controllers
 {
@@ -46,7 +47,7 @@ namespace API.Controllers
             return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderToReturnDto>> GetOrderByIdForUser(int id)
+        public async Task<ActionResult<OrderToReturnDto>> GetOrderByIdForUser(Guid id)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
             

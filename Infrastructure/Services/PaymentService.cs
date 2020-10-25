@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace Infrastructure.Services
             if(basket.DeliveryMethodId.HasValue)
             {
                 var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>()
-                .GetByIdAsync((int)basket.DeliveryMethodId);
+                .GetByIdAsync((Guid)basket.DeliveryMethodId);
                 shippingPrice = deliveryMethod.Price;
             }
 
