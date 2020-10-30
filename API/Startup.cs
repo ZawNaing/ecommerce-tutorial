@@ -7,6 +7,8 @@ using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +30,8 @@ namespace API
             services.AddDbContext<StoreContext>(x =>
             x.UseMySql(_config.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<AppIdentityDbContext>(x => {
+            services.AddDbContext<AppIdentityDbContext>(x =>
+            {
                 x.UseMySql(_config.GetConnectionString("IdentityConnection"));
             });
 
@@ -40,7 +43,8 @@ namespace API
             services.AddDbContext<StoreContext>(x =>
             x.UseMySql(_config.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<AppIdentityDbContext>(x => {
+            services.AddDbContext<AppIdentityDbContext>(x =>
+            {
                 x.UseMySql(_config.GetConnectionString("IdentityConnection"));
             });
 
@@ -52,11 +56,20 @@ namespace API
 
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
-            services.AddSingleton<IConnectionMultiplexer>(c => {
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
                 var configuration = ConfigurationOptions.Parse(_config
                     .GetConnectionString("Redis"), true);
                 return ConnectionMultiplexer.Connect(configuration);
+            });
+
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
             });
 
             services.AddApplicationServices();
@@ -64,7 +77,7 @@ namespace API
             services.AddSwaggerDocumentation();
             services.AddCors(opt =>
             {
-                opt.AddPolicy("CorsPolicy", policy => 
+                opt.AddPolicy("CorsPolicy", policy =>
                 {
                     policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                 });
@@ -83,23 +96,30 @@ namespace API
 
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
+
+
 
             app.UseRouting();
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
+            app.UseStaticFiles(new StaticFileOptions()
             {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "Content")), RequestPath = "/content"
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
             });
+            // app.UseStaticFiles(new StaticFileOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(
+            //         Path.Combine(Directory.GetCurrentDirectory(), "Content")), RequestPath = "/content"
+            // });
 
-            app.UseCors("CorsPolicy");
+
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();
-
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

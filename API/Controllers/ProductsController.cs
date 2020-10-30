@@ -32,7 +32,7 @@ namespace API.Controllers
 
         }
 
-        [Cached(600)]
+        // [Cached(600)]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
             [FromQuery] ProductSpecParams productParams)
@@ -58,7 +58,7 @@ namespace API.Controllers
         //     return Ok(data);
         // }
 
-        [Cached(600)]
+        // [Cached(600)]
         [HttpGet("{id}", Name = "GetProduct")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
@@ -73,7 +73,7 @@ namespace API.Controllers
             return _mapper.Map<Product, ProductToReturnDto>(product);
         }
 
-        [Cached(600)]
+        // [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
@@ -81,7 +81,7 @@ namespace API.Controllers
             return Ok(brands);
         }
 
-        [Cached(600)]
+        // [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
@@ -92,6 +92,12 @@ namespace API.Controllers
         [HttpPost]
         public ActionResult<Product> CreateProduct(Product product)
         {
+               var destinationFilePath = "";
+            if(product.PictureUrl != null) {
+              
+                CommonFunctions.checkFileExistAndMove(product.PictureUrl, out destinationFilePath);
+            }
+            product.PictureUrl = destinationFilePath;
             _productRepository.CreateProductAsync(product);
             _productRepository.SaveChanges();
 
@@ -102,11 +108,17 @@ namespace API.Controllers
         public ActionResult UpdateProduct(Guid id, ProductUpdateDto product)
         {
             var p = _productRepository.GetProductByIdAsync(id);
+            var destinationFilePath = "";
             if (p == null)
             {
                 return NotFound();
             }
 
+            if(product.PictureUrl != null && product.PictureUrl.Contains("/temp")) {
+                CommonFunctions.checkFileExistAndMove(product.PictureUrl,out destinationFilePath);
+                 product.PictureUrl = destinationFilePath;
+            }
+           
             var data = _mapper.Map(product, p);
             _productRepository.UpdateProductAsync(data);
             _productRepository.SaveChanges();
