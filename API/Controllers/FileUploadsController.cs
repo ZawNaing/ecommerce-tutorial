@@ -24,11 +24,13 @@ namespace API.Controllers
                 {
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
 
-            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
             var config = builder.Build();
 
-            string filePath = config.GetSection("FTPAddress1").Value + "/temp/";
-            string fileHost = config.GetSection("FileHost1").Value + "/temp/";
+            string filePath = config.GetSection("FTPAddress").Value + "/temp/";
+            string fileHost = config.GetSection("FileHost").Value + "/temp/";
+
+            
 
             string errorMsg = "";
 
@@ -36,6 +38,7 @@ namespace API.Controllers
             {
                 return BadRequest();
             }
+          
              var fileNameToSAve = Guid.NewGuid() + Path.GetExtension(file.ContentDisposition).Trim('"');
                     var fullPath = Path.Combine(filePath, fileNameToSAve);
                     var dbPath = Path.Combine(fileHost, fileNameToSAve);
@@ -45,7 +48,9 @@ namespace API.Controllers
                         file.CopyTo(stream);
                     }
                     var fileUploadReturnDto = new FileUploadReturnDto();
-                    fileUploadReturnDto.FilePath = fullPath.Substring(35);
+                    fullPath= fileHost + fileNameToSAve;
+                    var fpath = fullPath.IndexOf("/temp");
+                    fileUploadReturnDto.FilePath = fullPath.Substring(fpath);
                     fileUploadReturnDto.FullFilePath = dbPath;
                     return Ok(fileUploadReturnDto);
                 }

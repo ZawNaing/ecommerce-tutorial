@@ -9,6 +9,7 @@ namespace Core.Entities
         public string ProductCode { get; set; }
         public string ProductColor { get; set; }
         public decimal Price { get; set; }
+        public decimal WholeSaleDiscount { get; set; }
         public string PictureUrl { get; set; }
         public ProductType ProductType { get; set; }
         public Guid ProductTypeId { get; set; }

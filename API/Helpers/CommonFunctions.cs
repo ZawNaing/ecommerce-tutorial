@@ -35,10 +35,10 @@ namespace API.Helpers
             var errorMsg = "";
             destinationFilPath = "";
             var tempFilePath = "";
-            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
             var config = builder.Build();
 
-            string filePath = config.GetSection("FTPAddress1").Value;
+            string filePath = config.GetSection("FTPAddress").Value;
 
             #region check file exist in location
             valFilePath = filePath + filePathFromApi;

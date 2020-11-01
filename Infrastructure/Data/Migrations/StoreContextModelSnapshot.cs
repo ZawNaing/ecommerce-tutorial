@@ -164,7 +164,6 @@ namespace Infrastructure.Data.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("PictureUrl")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Price")
@@ -174,9 +173,11 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ProductCode")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("ProductColor")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<Guid>("ProductTypeId")
@@ -187,6 +188,9 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<decimal>("WholeSaleDiscount")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 

@@ -14,6 +14,7 @@ namespace Infrastructure.Data.Config
             builder.Property(p => p.ProductColor).IsRequired();
             builder.Property(p => p.Description).IsRequired();
             builder.Property(p => p.Price).HasColumnType("decimal(18, 2)");
+            builder.Property(p => p.WholeSaleDiscount).HasColumnType("decimal(18, 2)");
             builder.HasOne(b => b.ProductBrand).WithMany()
             .HasForeignKey(p => p.ProductBrandId);
             builder.HasOne(t => t.ProductType).WithMany()

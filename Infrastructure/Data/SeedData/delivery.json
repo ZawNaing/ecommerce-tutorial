@@ -1,30 +1,50 @@
 [
   {
     "Id": "242c6d33-cbbd-4ce2-b6be-ccf711184ae8",
-    "ShortName": "UPS1",
+    "ShortName": "Deli",
     "Description": "Fastest delivery time",
     "DeliveryTime": "1-2 Days",
-    "Price": 10
+    "Price": 10,
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
     "Id": "ccb3a846-7562-4bf5-96e0-16e656739ae7",
-    "ShortName": "UPS2",
+    "ShortName": "Marathon",
     "Description": "Get it within 5 days",
     "DeliveryTime": "2-5 Days",
-    "Price": 5
+    "Price": 5,
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
     "Id": "bebc9b3a-bbac-4c72-81b5-af88322bbc22",
-    "ShortName": "UPS3",
+    "ShortName": "Grab",
     "Description": "Slower but cheap",
     "DeliveryTime": "5-10 Days",
-    "Price": 2
+    "Price": 2,
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   },
   {
     "Id": "5392e39d-2a4f-4341-af45-e307801ca035",
     "ShortName": "FREE",
     "Description": "Free! You get what you pay for",
     "DeliveryTime": "1-2 Weeks",
-    "Price": 0
+    "Price": 0,
+    "IsActive": true,
+    "CreatedAt": "2020-10-23T09:15:13Z",
+    "UpdatedAt": "2020-10-23T09:15:13Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
   }
 ]
